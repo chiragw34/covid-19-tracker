@@ -5,7 +5,7 @@ import { Line, Bar } from "react-chartjs-2";
 import styles from "./Chart.module.css";
 
 const Chart = ({ data:{confirmed, recovered, deaths}, country }) => {
-  const [dailyData, setDailyData] = useState([]);
+  const [dailyData, setDailyData] = useState([]);  
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -22,14 +22,15 @@ const Chart = ({ data:{confirmed, recovered, deaths}, country }) => {
           {
             data: dailyData.map(({ confirmed }) => confirmed),
             label: "Infected",
-            borderColor: "#3333ff",
+            borderColor:"rgb(30,136,229)",
+            backgroundColor: "rgba(30,136,229,0.2)",
             fill: true,
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
-            label: "Infected",
+            label: "Deaths",
             borderColor: "red",
-            backgroundColor: "rgba(255,0, 0, 0.5)",
+            backgroundColor: "rgba(255,0, 0, 0.4)",
             fill: true,
           },
         ],
@@ -45,11 +46,11 @@ const Chart = ({ data:{confirmed, recovered, deaths}, country }) => {
           {
             label: "People",
             backgroundColor: [
-              "rgba(0,0,255, 0.5)",
-              "rgba(0,255,0, 0.5)",
+              "rgba(30,136,229)",
+              "#43a047",
               "rgba(255,0,0, 0.5)",
             ],
-            data:[confirmed.value, recovered.value, deaths.value]
+            data: [confirmed.value, recovered.value, deaths.value],
           },
         ],
       }}
